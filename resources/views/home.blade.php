@@ -13,7 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
                     <a href="/sghl/public/patients/create" class="btn btn-primary">Nouveau Patient</a>
                     <h3>Mes Patients</h3>

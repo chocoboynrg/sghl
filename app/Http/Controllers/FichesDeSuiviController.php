@@ -26,7 +26,7 @@ class FichesDeSuiviController extends Controller
         $fichesDeSuivi = new FicheDeSuivi;
         $consultation= $request->session()->get('consultation');
 
-        // recuperation de l'id du patient 
+        // recuperation de l'id du patient  
         $fichesDeSuivi->consultation_id = $consultation->id ;
         return view('fichesDeSuivi.create', compact('fichesDeSuivi','consultation'));
     }

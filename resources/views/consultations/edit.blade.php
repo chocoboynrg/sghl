@@ -13,6 +13,6 @@
         <div class="form-group">
             <input type="submit" value="Créer" class="btn btn-primary btn-block">
         </div>
-    </form>
+    </form> 
 
 @endsection

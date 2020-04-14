@@ -1,4 +1,8 @@
-@csrf
+{{-- @csrf --}}
+
+{{-- @if(Session::has('serverError'))
+<p class="alert alert-danger"> {{Session::get('serveError')}}</p>   
+@endif --}}
     <div class="form-group">
         <label for="nom">Nom:</label>
         <input type="text" name="nom" id="nom" value="{{ old('nom') ?? $patient->nom }}" placeholder="saisissez le nom" class="form-control" >
@@ -16,10 +20,12 @@
     <div class="form-group">
         <label for="sexe">Sexe:</label>
         <select name="sexe" id="sexe" class="form-control">
-            <option value="" disabled>Choisir Age</option>
+            //remplacement de Age par Sexe
+            {{-- <option value="" disabled>Choisir Age</option> --}}
+            <option value="" disabled>Choisir Sexe</option>
             <option value="Masculin" {{ $patient->sexe == 'Masculin' ? 'selected' : ''}}>Masculin</option>
             <option value="Feminin"  {{ $patient->sexe == 'Feminin' ? 'selected' : ''}}>Feminin</option>
-        </select>
+        </select> 
     </div>
     <div class="form-group">
         <label for="adresse">Adresse:</label>

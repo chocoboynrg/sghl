@@ -10,7 +10,7 @@
         </div>
     </div>
     <table class="table table-bordered">
-        <thead>
+        <thead> 
             <tr>
                 <th>No</th>
                 <th>Nom et prénom</th>

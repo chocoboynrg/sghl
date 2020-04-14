@@ -1,0 +1,32 @@
+
+            {{-- <tbody>
+                @foreach ($type_examens as $type_examen) --}}
+                    {{-- <tr>
+                        <th scope="row">{{$type_examen->id}}</th>
+                        <td>{{$type_examen->nom}}</td>
+                        <td>{{$type_examens->prix}}</td>
+                        
+                        <td>
+                            <a href="{{ route('type_consultations.edit', ['type_consultation' => $type_consultation ]) }}" class="btn btn-warning">Modifier</a>
+
+                            <form action="{{ route('type_consultations.destroy',['type_consultation' => $type_consultation]) }}" method="POST" class="d-inline">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{-- @endforeach --}}
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col">   {{ $type_consultations->links()  }} </div>
+        </div>
+        
+    {{-- @else --}}
+    <div class="row">
+        <div class="col-md-12">Aucun type trouvé</div>
+    </div>
+
+    {{-- @endif --}}
+@endsection --}}

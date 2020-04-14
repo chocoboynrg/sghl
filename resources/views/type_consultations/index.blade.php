@@ -4,7 +4,7 @@
 
     <div class="row">
             <div class="col-md-12 text-right">
-            <a href="{{ route('type_consultations.create') }}" class="btn btn-success"><i class="fas fa-user-plus"></i> Nouveau type</a>
+            <a href="{{ route('type_examens.index') }}" class="btn btn-success"><i class="fas fa-cogs" aria-hidden="true"></i> Nouveau type examen</a>
             </div>
     </div>
     <br>
@@ -34,6 +34,7 @@
                 <th scope="col">TARIF</th>
                 <th scope="col">ACTIONS</th>
                 </tr>
+                <a href="{{ route('type_consultations.create') }}" class="btn btn-success"><i class="fas fa-cog"></i> Nouveau type</a>
             </thead>
             <tbody>
                 @foreach ($type_consultations as $type_consultation)

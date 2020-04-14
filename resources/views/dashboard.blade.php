@@ -14,8 +14,10 @@
                         </div>
                     @endif
 
-                    <a href="/sghl/public/patients/create" class="btn btn-primary">Nouveau Patient</a>
-                      
+                    {{-- <a href="/sghl/public/patients/create" class="btn btn-primary">Nouveau Patient</a> --}}
+                    {{-- <a href="/patients/create" class="btn btn-primary">Nouveau Patient</a> --}}
+                    <a href="{{ route('patients.create') }}" class="btn btn-success"><i class="fas fa-user-plus"></i> Nouveau patient</a>
+
                               <h3>Mes Patients</h3>
                 </div>
             </div>
