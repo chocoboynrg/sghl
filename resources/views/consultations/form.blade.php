@@ -7,7 +7,7 @@
         @endforeach
     </select>
     <div> {{ $errors->first('type_consultation') }} </div>
-</div>
+</div> 
 <div class="form-group">
     <label for="accompagnant">Accompagnant:</label>
     <input type="text" name="accompagnant" id="accompagnant" value="{{ old('accompagnant') ?? $consultation->accompagnant }}" placeholder="Nom et prenom" class="form-control">
@@ -24,5 +24,4 @@
     <label for="reference">Reference:</label>
     <input type="text" name="reference" id="reference" value="{{ old('reference') ?? $consultation->reference }}" placeholder="venu de la part de?" class="form-control">
 </div>
-
 <input type="hidden" name="patient_id" value="{{$consultation->patient_id}}">

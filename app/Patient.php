@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Consultation;
 
+use App\Type_examen;
+
 class Patient extends Model
 {
     //Table name
@@ -36,4 +38,12 @@ class Patient extends Model
     public function consultations(){
         return $this->hasMany(Consultation::class);
     }
+
+        /**
+     * Relation 1,n entre patient et examen
+     */
+    public function examens(){
+        return $this->hasMany(Examen::class);
+    }
+
 }

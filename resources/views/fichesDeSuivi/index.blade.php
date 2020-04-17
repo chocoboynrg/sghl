@@ -8,7 +8,7 @@
                 <span class="input-group-prepend">
                     <button type="submit" class="btn btn-primary">GO</button>
                 </span>
-            </div>
+            </div> 
         </form>
     </div>
     @if(count($fichesDeSuivi) > 0)

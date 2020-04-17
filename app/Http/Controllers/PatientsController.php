@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\Consultation;
+use App\Type_examen; 
 use DB;
-
+ 
 class PatientsController extends Controller
 {
 
@@ -49,12 +50,42 @@ class PatientsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     Patient::create($this->validateRequest());
+    //     return redirect('/patients')->with('success','Patient crée  avec succès');
+
+    // }
+
     public function store(Request $request)
     {
-        Patient::create($this->validateRequest());
-        return redirect('/patients')->with('success','Patient crée  avec succès');
+        $this->validate($request, [
+            'nom' => 'required',
+            'prenom' => 'required', 
+            'contact' => 'required',
+            'sexe' => '',
+            'age' => '',
+            'adresse' => ''
+
+        ]); 
+            //ma methode de creation de patient
+        $patient = new Patient;
+        $patient ->nom = $request->input('nom');
+        $patient ->prenom = $request->input('prenom');
+        $patient ->contact = $request->input('contact');
+        $patient ->sexe = $request->input('sexe');
+        $patient ->age = $request->input('age');
+        $patient ->adresse = $request->input('adresse');
+
+
+        $patient->user_id = auth()->user()->id;
+
+        $patient->save();
+
+        return redirect ('\patients')->with('success','Patient crée');
 
     }
+
 
     /**
      * Display the specified resource.
@@ -107,7 +138,7 @@ class PatientsController extends Controller
     }
     
     // regles de validation commune
-    public function validateRequest(){
+    /*public function validateRequest(){
 
         $data =  request()->validate(
             [
@@ -124,5 +155,5 @@ class PatientsController extends Controller
 
         return $data;
 
-    }
+    }*/
 }

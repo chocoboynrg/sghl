@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Http\Controllers\Controller;
+
+
 use App\Consultation;
 use App\Patient;
 use App\FicheDeSuivi;
 use App\Type_consultation;
-use Carbon\Carbon;
-
+use Carbon\Carbon; 
+ 
 class ConsultationsController extends Controller
 {
 
@@ -22,7 +26,7 @@ class ConsultationsController extends Controller
         $consultations = Consultation::whereDate('created_at', Carbon::today())->where('onWait','=',1)->orderBy('created_at','asc')->paginate(20);
         return view('consultations.index')->with('consultations', $consultations);
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *
@@ -31,9 +35,9 @@ class ConsultationsController extends Controller
     public function create(Request $request)
     {
         $consultation = new Consultation();
-
+ 
         $patient= $request->session()->get('patient');
-
+ 
         // recuperation de l'id du patient 
         $consultation->patient_id = $patient->id ;
 
@@ -41,17 +45,42 @@ class ConsultationsController extends Controller
         $type_consultations = Type_consultation::all();
         return view('consultations.create',compact('consultation','patient','type_consultations'));
     }
-
+ 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        Consultation::create($this->validateRequest());
-        return redirect('/consultations')->with('success','consultation créee avec success');
+        // Consultation::create($this->validateRequest());
+        // return redirect('/consultations')->with('success','consultation créee avec success');
+
+        $this->validate($request, [
+                'type_consultation_id'=>'',
+                'accompagnant' => '',
+                'contactaccompagnant' => '',
+                'reference' => '',
+     //           'onWait' => '',
+                'patient_id' => ''
+            ]); 
+            //ma methode de creation de consultation
+        $consultation = new consultation;
+        $consultation ->type_consultation_id = $request->input('type_consultation_id');
+        $consultation ->accompagnant = $request->input('accompagnant');
+        $consultation ->contactaccompagnant = $request->input('contactaccompagnant');
+        $consultation ->reference = $request->input('reference');
+       // $consultation ->onWait = $request->input('onWait');
+        $consultation ->patient_id = $request->input('patient_id');
+
+
+       // $patient->user_id = auth()->user()->id;
+
+        $consultation->save();
+
+        return redirect ('\consultations')->with('success','consultation crée');
+
     }
 
     /**
@@ -107,18 +136,19 @@ class ConsultationsController extends Controller
         return redirect()->route('consultations.index')->with('success','Patient supprimé  avec succès');
     }
 
-    public function validateRequest(){
+    // public function validateRequest(){
 
-        $data =  request()->validate(
-            [
-                'type_consultation_id'=>'',
-                'accompagnant' => '',
-                'contactaccompagnant' => '',
-                'reference' => '',
-                'onWait' => '',
-                'patient_id' => ''
-            ]
-        );
-        return $data;
-    }
+    //      $data =  request()->validate(
+    //         // $this->validate($request,
+    //         [
+            //     'type_consultation_id'=>'',
+            //     'accompagnant' => '',
+            //     'contactaccompagnant' => '',
+            //     'reference' => '',
+            //     'onWait' => '',
+            //     'patient_id' => ''
+            // ]
+    //     );
+    //     return $data;
+    // }
 }

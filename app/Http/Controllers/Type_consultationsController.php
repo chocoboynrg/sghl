@@ -7,13 +7,13 @@ use App\Type_consultation;
 
 class Type_consultationsController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() 
+    { 
         $type_consultations = Type_consultation::orderBy('nom','asc')->paginate(20);
         return view('type_consultations.index')->with('type_consultations', $type_consultations);
     }
@@ -44,8 +44,29 @@ class Type_consultationsController extends Controller
      */
     public function store(Request $request)
     {
-        Type_consultation::create($this->validateRequest());
-        return redirect('/type_consultations')->with('success','type de consultation crée  avec succès');
+        // Type_consultation::create($this->validateRequest());
+        // return redirect('/type_consultations')->with('success','type de consultation crée  avec succès');
+    
+        $this->Validate($request,[
+            'nom' => 'required',
+            'prix' => 'required', 
+
+        ]);
+
+        //ma methode de cretion
+        $type_consultation = new Type_consultation;
+        $type_consultation ->nom = $request->input('nom');
+        $type_consultation ->prix = $request->input('prix');
+        
+        //$type_consultation->user_id = auth()->user()->id;
+
+        $type_consultation->save();
+
+        return redirect('/type_consultations')->with('success','Type de consultation crée avec succès');
+
+
+
+        
     }
 
     /**
@@ -68,6 +89,7 @@ class Type_consultationsController extends Controller
      */
     public function edit(Type_consultation $type_consultation)
     {
+        
         return view('type_consultations.edit',compact('type_consultation'));
     }
 
@@ -97,15 +119,15 @@ class Type_consultationsController extends Controller
         return redirect('/type_consultations')->with('success','Type de consultatiom supprimé  avec succès');
     }
 
-    public function validateRequest(){
+    // public function validateRequest(){
 
-        $data =  request()->validate(
-            [
-                'nom' => 'required',
-                'prix' => 'required'
-            ]
-        );
-        return $data;
+    //     $data =  request()->validate(
+    //         [
+    //             'nom' => 'required',
+    //             'prix' => 'required'
+    //         ]
+    //     );
+    //     return $data;
 
-    }
+    // }
 }

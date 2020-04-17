@@ -39,7 +39,7 @@
                 @foreach ($patients as $patient)
                     <tr>
                         <th scope="row">{{$patient->id}}</th>
-                    <td><a href="{{ route('patients.show',['patient' => $patient]) }}"> {{$patient->nom}} {{$patient->prenom}}</a></td>
+                    <td><a href="{{ route('patients.show', ['patient' => $patient]) }}"> {{$patient->nom}} {{$patient->prenom}}</a></td>
                         <td>{{$patient->age}}</td>
                         <td>{{$patient->sexe}}</td>
                     </tr>

@@ -1,0 +1,90 @@
+@extends('layouts.app')
+@section('title','Details examens ')
+
+
+@section('content')
+
+    <div class="col-md-12 text-right">
+    <a href="{{ route('patients.create') }}" class="btn btn-success"><i class="fas fa-user-plus"></i> voir autre Examen</a>
+    </div>
+
+
+<h1>{{$examen->patient->nom}} </h1>
+    <hr>
+
+    <p>Id Examen: <b>{{$examen->type_examen_id}}</b> <p>
+    <p>Examen: <b>{{$examen->type_examen->nom}}</b> <p>
+    <p>Resultats: <b>{{$examen->resultats}} </b>   Norme:<i>{{$examen->type_examen->norme}}</i></p> 
+    <p>Conclusion: <b>{{$examen->conclusion}}</b></p>
+    
+
+    <div class="row">
+      <div class="col">
+        <a href="{{ route('examens.edit', ['examen' => $examen]) }}" class="btn btn-success"> <i class="fas fa-pencil-alt"></i> Modifier</a>
+        </div>
+        <div class="col">
+            <form action="{{ route('examens.destroy',['examen' => $examen]) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Supprimer</button>
+
+            </form>
+        </div> 
+    </div>
+    <hr>  
+
+        </table>
+    
+@endsection
+
+----------------------------------------------------------------------------------------------
+
+@extends('layouts.app')
+@section('title','Details examens ')
+
+
+@section('content')
+
+    <div class="col-md-12 text-right">
+    <a  href="/index" class="btn btn-success"><i class="fas fa-user-plus"></i> voir autre Examen</a>
+    </div>
+
+
+<h1>{{$examen->patient->nom}} </h1>
+    <hr>
+
+
+    pivot Examen: <b>{{$type_examen->pivot->examen_id}}
+        
+    <p>Id Examen: <b>{{$type_examen->id}}</b> <p>
+    <p>Examen: <b>{{$type_examen->nom}}</b> <p>
+    <p>Resultats: <b>{{$examen->resultats}} </b> <br>  Norme:<i>{{$type_examen->norme}}</i></p> 
+    <p>Conclusion: <b>{{$examen->conclusion}}</b></p>
+    <p>Prix: <b>{{$type_examen->prix}}</b></p>
+
+    
+
+    <div class="row">
+      <div class="col">
+        <a href="{{ route('examens.edit', ['examen' => $examen]) }}" class="btn btn-success"> <i class="fas fa-pencil-alt"></i> Modifier</a>
+        </div>
+        <div class="col">
+            <form action="{{ route('examens.destroy',['examen' => $examen]) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Supprimer</button>
+
+            </form>
+        </div> 
+    </div>
+    <hr>  
+
+
+    {{-- @foreach ($examen->type_examens as $type_examen) --}}
+
+             {{-- <p>Id Examen: <b>{{$type_examen->pivot->examen_id}} {{$type_examen->pivot->type_examen_id}} </b> <p> --}}
+
+         <span>{{$examen->type_examens->count()}} {{ str_plural('Examen effectué', $examen->type_examens->count()) }}</span>
+
+        </table>
+@endsection 

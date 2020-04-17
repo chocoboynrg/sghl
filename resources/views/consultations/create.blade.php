@@ -5,7 +5,7 @@
         <div class="col text-center"> 
             <h1>Consultation du patient {{ $patient->nom .' '. $patient->prenom  }} </h1>
         </div>
-    </div>
+    </div> 
     <br>
     <form  action="{{ route('consultations.store') }}" method="POST">
         @method('POST')
